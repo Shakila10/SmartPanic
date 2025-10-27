@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TipController;
 use App\Http\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardRTController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,3 +64,13 @@ Route::get('/reset-success', function () {
     return view('auth.reset-success');
 })->name('password.success');
 
+// Halaman dashboard RT (index)
+Route::get('/dashboardRT', function () {
+    return view('dashboardRT.index'); // <- ini harus index.blade.php
+})->name('dashboardRT');
+
+// Halaman tambah laporan
+Route::get('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'tambahLaporan'])->name('tambah-laporan');
+
+// Menyimpan laporan
+Route::post('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'simpanLaporan'])->name('laporan.simpan');

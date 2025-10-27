@@ -10,11 +10,10 @@ class Laporan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id','nama_pelapor','jenis','lokasi','deskripsi','status'
+        'nama_pelapor',
+        'jenis_laporan',
+        'deskripsi',
+        'lokasi',
+        'status',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

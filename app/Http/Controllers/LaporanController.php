@@ -2,55 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\LaporanCreated;
-use App\Models\Laporan;
 use Illuminate\Http\Request;
+use App\Models\Laporan;
 
 class LaporanController extends Controller
 {
-    public function index()
-    {
-        // untuk admin: daftar semua laporan
-        $laporans = Laporan::latest()->paginate(10);
-        return view('laporan.index', compact('laporans'));
-    }
-
+    // Tampilkan form tambah laporan
     public function create()
     {
-        return view('laporan.create');
+        return view('dashboardRT.tambah-laporan');
     }
 
+    // Simpan laporan baru
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'nama_pelapor' => 'nullable|string|max:255',
-            'jenis' => 'required|string',
-            'lokasi' => 'nullable|string|max:255',
-            'deskripsi' => 'nullable|string',
+        $request->validate([
+            'nama_pelapor' => 'required|string|max:255',
+            'jenis_laporan' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'lokasi' => 'required|string|max:255',
         ]);
 
-        $laporan = Laporan::create($data);
+        Laporan::create($request->all());
 
-        // broadcast event
-        broadcast(new LaporanCreated($laporan))->toOthers();
-
-        return redirect()->route('laporan.thanks')->with('success','Laporan terkirim.');
-    }
-
-    public function show(Laporan $laporan)
-    {
-        return view('laporan.show', compact('laporan'));
-    }
-
-    public function updateStatus(Request $request, Laporan $laporan)
-    {
-        $request->validate(['status' => 'required|in:Baru,Proses,Selesai']);
-        $laporan->update(['status' => $request->status]);
-        return back()->with('success','Status diperbarui.');
-    }
-
-    public function thanks()
-    {
-        return view('laporan.thanks');
+        return redirect()->back()->with('success', 'Laporan berhasil dikirim!');
     }
 }
