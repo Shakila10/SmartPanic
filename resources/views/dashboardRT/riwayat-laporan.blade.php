@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Laporan - Smart Panic</title>
+    <title>Riwayat Laporan - Smart Panic</title>
 
+    <!-- Font & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
 
@@ -39,11 +40,12 @@
             left: 0;
             z-index: 100;
         }
+        /* Di dalam tag <style> pada riwayat-laporan dan tambah-laporan */
+.header-center { font-size: 18px; font-weight: 600; margin: 0; }
 
         .header-left { display: flex; align-items: center; gap: 12px; }
         .header-left img { height: 38px; width: auto; }
         .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
-        .header-center { font-size: 18px; font-weight: 600; margin: 0; }
         .profile {
             background-color: var(--color-primary);
             width: 45px; height: 45px;
@@ -112,105 +114,107 @@
         .main {
             flex: 1;
             background-color: var(--color-primary);
+            padding: 30px 40px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 30px 40px;
-            position: relative;
-            overflow-y: auto;
         }
 
-        /* === FORM AREA === */
+        /* === CONTENT === */
         .content-area {
             flex-grow: 1;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 40px;
-            padding: 30px 0 60px;
-        }
-
-        .form-section, .report-section {
-            background: var(--color-secondary);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .form-section {
-            width: 50%;
-            max-width: 450px;  /* Mengecilkan form */
-        }
-
-        .report-section {
-            width: 35%;
-            max-width: 320px;
-        }
-
-        .form-section h3, .report-section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--color-primary);
-        }
-
-        form {
-            display: flex;
             flex-direction: column;
-            gap: 14px;
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1.5px solid var(--color-primary);
-            border-radius: 6px;
-            font-size: 14px;
-            color: var(--color-primary);
-            background-color: #fff;
-            box-sizing: border-box;
-        }
-
-        textarea { resize: vertical; min-height: 80px; }
-
-        button {
-            background-color: var(--color-primary);
+            align-items: center;
+            padding: 30px 0 60px;
             color: var(--color-secondary);
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
         }
 
-        button:hover { background-color: var(--color-hover); transform: scale(1.02); }
+        .content-area h2 {
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
 
-        /* === KONTAK DARURAT === */
-        .emergency-numbers {
+        /* Search & Filter */
+        .search-filter {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        .emergency-item {
-            text-align: center;
-            font-weight: 600;
+        .search-filter input, .search-filter select {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-filter input {
+            width: 250px;
+        }
+
+        /* === CARD LAPORAN === */
+        .laporan-card {
+            width: 80%;
+            background-color: var(--color-secondary);
+            border-radius: 12px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+
+        .laporan-card:hover { transform: translateY(-3px); }
+
+        .laporan-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .icon-bg {
             background-color: var(--color-accent);
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 8px auto;
         }
 
-        .icon-bg .material-icons-round { font-size: 32px; }
+        .icon-bg .material-icons-round {
+            font-size: 30px;
+        }
+
+        .laporan-text h3 {
+            font-size: 16px;
+            margin: 0;
+            color: var(--color-primary);
+        }
+
+        .laporan-text p {
+            margin: 2px 0;
+            font-size: 13.5px;
+            color: #555;
+        }
+
+        .status {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        .status.ditangani { background-color: #ffa726; }
+        .status.selesai { background-color: #43a047; }
 
         /* === FOOTER === */
         footer {
@@ -241,89 +245,84 @@
                     <a href="{{ route('dashboardRT') }}" class="menu-item">
                         <span class="material-icons-outlined">home</span> Beranda
                     </a>
-                    <a href="{{ route('tambah-laporan') }}" class="menu-item active">
+                    <a href="{{ route('tambah-laporan') }}" class="menu-item">
                         <span class="material-icons-outlined">post_add</span> Tambah Laporan
                     </a>
-                    <a href="{{ route('riwayat-laporan') }}" class="menu-item">
+                    <a href="{{ route('riwayat-laporan') }}" class="menu-item active">
                         <span class="material-icons-outlined">history</span> Riwayat Laporan
                     </a>
-
                     <a href="#" class="menu-item">
                         <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
                     </a>
                 </div>
             </div>
+            
 
             <a href="#" class="logout">
                 <span class="material-icons-outlined">logout</span> Logout
             </a>
         </div>
 
+        <!-- MAIN CONTENT -->
         <div class="main">
             <div class="content-area">
-                <!-- === KONTAK DARURAT === -->
-                <section class="report-section">
-                    <h2>Kontak Darurat</h2>
-                    <div class="emergency-numbers">
-                        <div class="emergency-item">
-                            <div class="icon-bg"><span class="material-icons-round" style="color:#003f8a;">local_police</span></div>
-                            <span>110 Polisi</span>
+                <h2>Riwayat Laporan</h2>
+
+                <div class="search-filter">
+                    <input type="text" placeholder="Cari Laporan">
+                    <select>
+                        <option value="">Filter</option>
+                        <option value="sedang-ditangani">Sedang Ditangani</option>
+                        <option value="selesai">Selesai</option>
+                    </select>
+                </div>
+
+                <!-- CARD LAPORAN DENGAN ICON -->
+                <div class="laporan-card">
+                    <div class="laporan-info">
+                        <div class="icon-bg">
+                            <span class="material-icons-round" style="color:#c62828;">fire_extinguisher</span>
                         </div>
-                        <div class="emergency-item">
-                            <div class="icon-bg"><span class="material-icons-round" style="color:#c62828;">local_hospital</span></div>
-                            <span>113 Ambulans</span>
-                        </div>
-                        <div class="emergency-item">
-                            <div class="icon-bg"><span class="material-icons-round" style="color:#ff6f00;">fire_extinguisher</span></div>
-                            <span>118 Pemadam</span>
+                        <div class="laporan-text">
+                            <h3>Laporan kebakaran</h3>
+                            <p>Shakila Rama Wulandari</p>
+                            <p>No. 35</p>
                         </div>
                     </div>
-                </section>
+                    <div class="status ditangani">Sedang Ditangani</div>
+                </div>
 
-                <!-- === FORM LAPORAN DARURAT === -->
-                <section class="form-section">
-                    <h3>Formulir Laporan Darurat</h3>
-                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm">
-                        @csrf
-                        <input type="text" name="nama" placeholder="Nama Pelapor" required>
+                <div class="laporan-card">
+                    <div class="laporan-info">
+                        <div class="icon-bg">
+                            <span class="material-icons-round" style="color:#1565c0;">medical_services</span>
+                        </div>
+                        <div class="laporan-text">
+                            <h3>Permintaan bantuan medis</h3>
+                            <p>Shakila Rama Wulandari</p>
+                            <p>No. 35</p>
+                        </div>
+                    </div>
+                    <div class="status selesai">Selesai</div>
+                </div>
 
-                        <select name="jenis_insiden" id="jenisInsiden" required>
-                            <option value="" disabled selected>Pilih Jenis Insiden</option>
-                            <option value="Kebakaran">Kebakaran</option>
-                            <option value="Kesehatan">Kesehatan / Medis</option>
-                            <option value="Kriminal">Kriminalitas / Keamanan</option>
-                            <option value="Bencana">Bencana Alam</option>
-                            <option value="Lainnya">Lainnya</option>
-                        </select>
-
-                        <input type="text" id="lainnyaInput" name="jenis_lainnya" placeholder="Tulis Jenis Kejadian" style="display:none;">
-
-                        <input type="text" name="lokasi" placeholder="Lokasi Kejadian" required>
-                        <textarea name="deskripsi" placeholder="Deskripsi Singkat Kejadian" required></textarea>
-                        <button type="submit">Kirim Laporan</button>
-                    </form>
-                </section>
+                <div class="laporan-card">
+                    <div class="laporan-info">
+                        <div class="icon-bg">
+                            <span class="material-icons-round" style="color:#2e7d32;">local_police</span>
+                        </div>
+                        <div class="laporan-text">
+                            <h3>Laporan bencana kemalingan</h3>
+                            <p>Shakila Rama Wulandari</p>
+                            <p>No. 35</p>
+                        </div>
+                    </div>
+                    <div class="status selesai">Selesai</div>
+                </div>
             </div>
 
             @include('dashboardRT.layout.footer')
         </div>
     </div>
-
-    <script>
-        // Munculkan input tambahan bila memilih "Lainnya"
-        const jenisInsiden = document.getElementById('jenisInsiden');
-        const lainnyaInput = document.getElementById('lainnyaInput');
-
-        jenisInsiden.addEventListener('change', function() {
-            if (this.value === 'Lainnya') {
-                lainnyaInput.style.display = 'block';
-                lainnyaInput.required = true;
-            } else {
-                lainnyaInput.style.display = 'none';
-                lainnyaInput.required = false;
-                lainnyaInput.value = '';
-            }
-        });
-    </script>
 </body>
 </html>

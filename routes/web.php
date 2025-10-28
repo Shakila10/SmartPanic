@@ -74,3 +74,8 @@ Route::get('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'tambah
 
 // Menyimpan laporan
 Route::post('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'simpanLaporan'])->name('laporan.simpan');
+
+// Halaman riwayat laporan RT
+Route::get('/dashboardRT/riwayat-laporan', function () {
+    return view('dashboardRT.riwayat-laporan');
+})->name('riwayat-laporan');

@@ -3,9 +3,7 @@
         <img src="{{ asset('images/LogoCreamSmartPanic.png') }}" alt="Logo Smart Panic">
         <h1>SMART PANIC</h1>
     </div>
-    <div class="header-center">
-        Dashboard RT
-    </div>
+   <div class="header-center"><h3>Dashboard RT</h3></div>
     <div class="header-right">
         <div class="profile">
             <span class="material-icons-outlined">person</span>
