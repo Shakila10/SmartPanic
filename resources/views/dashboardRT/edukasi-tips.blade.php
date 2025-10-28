@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat Laporan - Smart Panic</title>
+    <title>Edukasi & Tips Darurat - Smart Panic</title>
 
-    <!-- Font & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet">
 
@@ -40,8 +39,6 @@
             left: 0;
             z-index: 100;
         }
-        /* Di dalam tag <style> pada riwayat-laporan dan tambah-laporan */
-.header-center { font-size: 18px; font-weight: 600; margin: 0; }
 
         .header-left { display: flex; align-items: center; gap: 12px; }
         .header-left img { height: 38px; width: auto; }
@@ -114,109 +111,75 @@
         .main {
             flex: 1;
             background-color: var(--color-primary);
+            display: flex;
+            flex-direction: column;
             padding: 30px 40px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
-        /* === CONTENT === */
-        .content-area {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 0 60px;
+        /* === EDUKASI SECTION === */
+        .education-section {
+            background-color: var(--color-primary);
+            border-radius: 12px;
+            padding: 20px;
             color: var(--color-secondary);
         }
 
-        .content-area h2 {
-            font-size: 22px;
-            margin-bottom: 25px;
-        }
-
-        /* Search & Filter */
-        .search-filter {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .search-filter input, .search-filter select {
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .search-filter input {
-            width: 250px;
-        }
-
-        /* === CARD LAPORAN === */
-        .laporan-card {
-            width: 80%;
+        .education-title {
+            text-align: center;
             background-color: var(--color-secondary);
-            border-radius: 12px;
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            transition: 0.2s;
-        }
-
-        .laporan-card:hover { transform: translateY(-3px); }
-
-        .laporan-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .icon-bg {
-            background-color: var(--color-accent);
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-bg .material-icons-round {
-            font-size: 30px;
-        }
-
-        .laporan-text h3 {
-            font-size: 16px;
-            margin: 0;
             color: var(--color-primary);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 15px;
+            font-weight: 700;
+            margin: 10px auto 30px auto;
+            display: block;
+            font-size: 18px;
         }
 
-        .laporan-text p {
-            margin: 2px 0;
-            font-size: 13.5px;
-            color: #555;
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            justify-items: center;
         }
 
-        .status {
-            font-size: 13px;
-            font-weight: 600;
-            padding: 8px 14px;
-            border-radius: 8px;
-            color: #fff;
+        .tip-card {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 18px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 270px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: 0.3s;
         }
 
-        .status.ditangani { background-color: #ffa726; }
-        .status.selesai { background-color: #43a047; }
+        .tip-card:hover {
+            transform: translateY(-5px);
+            background-color: #fff8e6;
+        }
 
-        /* === FOOTER === */
+        .tip-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .tip-card a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
+
+        .tip-card a:hover {
+            color: var(--color-hover);
+            text-decoration: underline;
+        }
+
         footer {
             display: flex;
             justify-content: space-between;
@@ -228,18 +191,16 @@
             border-top: 1px solid rgba(255,255,255,0.25);
             border-radius: 10px 10px 0 0;
             box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+            margin-top: 20px;
         }
-
-        footer .left, footer .right { display: flex; align-items: center; gap: 8px; }
-        footer .material-icons-outlined { font-size: 16px; color: var(--color-accent); }
     </style>
 </head>
 
 <body>
     @include('dashboardRT.layout.header')
 
-
     <div class="container">
+        <!-- SIDEBAR -->
         <div class="sidebar">
             <div>
                 <div class="menu">
@@ -249,16 +210,14 @@
                     <a href="{{ route('tambah-laporan') }}" class="menu-item">
                         <span class="material-icons-outlined">post_add</span> Tambah Laporan
                     </a>
-                    <a href="{{ route('riwayat-laporan') }}" class="menu-item active">
+                    <a href="{{ route('riwayat-laporan') }}" class="menu-item">
                         <span class="material-icons-outlined">history</span> Riwayat Laporan
                     </a>
-                    <a href="{{ route('edukasi-tips') }}" class="menu-item">
+                    <a href="#" class="menu-item active">
                         <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
                     </a>
-
                 </div>
             </div>
-            
 
             <a href="#" class="logout">
                 <span class="material-icons-outlined">logout</span> Logout
@@ -267,63 +226,41 @@
 
         <!-- MAIN CONTENT -->
         <div class="main">
-            <div class="content-area">
-                <h2>Riwayat Laporan</h2>
+            <div class="education-section">
+                <h2 class="education-title">Edukasi & Tips Darurat</h2>
 
-                <div class="search-filter">
-                    <input type="text" placeholder="Cari Laporan">
-                    <select>
-                        <option value="">Filter</option>
-                        <option value="sedang-ditangani">Sedang Ditangani</option>
-                        <option value="selesai">Selesai</option>
-                    </select>
-                </div>
-
-                <!-- CARD LAPORAN DENGAN ICON -->
-                <div class="laporan-card">
-                    <div class="laporan-info">
-                        <div class="icon-bg">
-                            <span class="material-icons-round" style="color:#c62828;">fire_extinguisher</span>
-                        </div>
-                        <div class="laporan-text">
-                            <h3>Laporan kebakaran</h3>
-                            <p>Shakila Rama Wulandari</p>
-                            <p>No. 35</p>
-                        </div>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">🔥</div>
+                        <a href="#">Cara Mendeteksi Kebakaran Dini (Bau Asap, Alarm Kebakaran)</a>
                     </div>
-                    <div class="status ditangani">Sedang Ditangani</div>
-                </div>
 
-                <div class="laporan-card">
-                    <div class="laporan-info">
-                        <div class="icon-bg">
-                            <span class="material-icons-round" style="color:#1565c0;">medical_services</span>
-                        </div>
-                        <div class="laporan-text">
-                            <h3>Permintaan bantuan medis</h3>
-                            <p>Shakila Rama Wulandari</p>
-                            <p>No. 35</p>
-                        </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">💉</div>
+                        <a href="#">Gejala Kritis yang Memerlukan Pertolongan Medis</a>
                     </div>
-                    <div class="status selesai">Selesai</div>
-                </div>
 
-                <div class="laporan-card">
-                    <div class="laporan-info">
-                        <div class="icon-bg">
-                            <span class="material-icons-round" style="color:#2e7d32;">local_police</span>
-                        </div>
-                        <div class="laporan-text">
-                            <h3>Laporan bencana kemalingan</h3>
-                            <p>Shakila Rama Wulandari</p>
-                            <p>No. 35</p>
-                        </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🚨</div>
+                        <a href="#">Cara Mengenali Situasi Berisiko (Lingkungan Gelap, Sepi, dll)</a>
                     </div>
-                    <div class="status selesai">Selesai</div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">🔥</div>
+                        <a href="#">Mengenal Jalur Evakuasi dan Titik Kumpul Terdekat</a>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">💊</div>
+                        <a href="#">Dasar Pertolongan Pertama (Serangan Jantung, dll)</a>
+                    </div>
                 </div>
             </div>
 
-            @include('dashboardRT.layout.footer')
+            <footer>
+                <div class="left">RT.35, Bagan Pete, Kec. Alam Barajo, Kota Jambi</div>
+                <div class="right">©2025 Copyright: Smart Panic</div>
+            </footer>
         </div>
     </div>
 </body>

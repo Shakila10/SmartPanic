@@ -79,3 +79,8 @@ Route::post('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'simpa
 Route::get('/dashboardRT/riwayat-laporan', function () {
     return view('dashboardRT.riwayat-laporan');
 })->name('riwayat-laporan');
+
+// Halaman edukasi & tips darurat RT
+Route::get('/dashboardRT/edukasi-tips', function () {
+    return view('dashboardRT.edukasi-tips');
+})->name('edukasi-tips');
