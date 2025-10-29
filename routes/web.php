@@ -1,24 +1,24 @@
 <?php
 
 use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TipController;
 use App\Http\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardRTController;
+use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::middleware(['auth'])->group(function () {
-    // Admin dashboard (bisa dibatasi role)
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+// Route::middleware(['auth'])->group(function () {
+//     // Admin dashboard (bisa dibatasi role)
+//     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 
-    // laporan management (admin)
-    Route::get('/laporan', [LaporanController::class,'index'])->name('laporan.index');
-    Route::post('/laporan/{laporan}/status', [LaporanController::class,'updateStatus'])->name('laporan.updateStatus');
-});
+//     // laporan management (admin)
+//     Route::get('/laporan', [LaporanController::class,'index'])->name('laporan.index');
+//     Route::post('/laporan/{laporan}/status', [LaporanController::class,'updateStatus'])->name('laporan.updateStatus');
+// });
 
 // Public / warga
 Route::get('/lapor-baru', [LaporanController::class,'create'])->name('laporan.create');
@@ -35,16 +35,7 @@ Route::get('/tips', function(){ return view('tips.index'); })->name('tips.index'
 Route::get('/tips', function(){ return view('tips.index'); })->name('tips.index');
 
 
-// Tambahan agar Breeze tidak error saat klik "Profile"
-use App\Http\Controllers\ProfileController;
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('landing');
@@ -84,3 +75,4 @@ Route::get('/dashboardRT/riwayat-laporan', function () {
 Route::get('/dashboardRT/edukasi-tips', function () {
     return view('dashboardRT.edukasi-tips');
 })->name('edukasi-tips');
+
