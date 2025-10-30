@@ -256,11 +256,7 @@
                     </div>
                 </div>
             </div>
-
-            <footer>
-                <div class="left">RT.35, Bagan Pete, Kec. Alam Barajo, Kota Jambi</div>
-                <div class="right">©2025 Copyright: Smart Panic</div>
-            </footer>
+            @include('dashboardRT.layout.footer')
         </div>
     </div>
 </body>
