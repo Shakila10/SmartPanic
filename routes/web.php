@@ -6,7 +6,10 @@ use App\Http\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardRTController;
 use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\Auth\LoginController;
+
+use App\Http\Controllers\DashboardWargaController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -82,3 +85,15 @@ Route::get('/dashboardRT/edukasi-tips', function () {
     return view('dashboardRT.edukasi-tips');
 })->name('edukasi-tips');
 
+// Halaman dashbiard warga (index)
+Route::get('/dashboardWarga', function () {
+    return view('dashboardWarga.index'); // <- ini harus index.blade.php
+})->name('dashboardWarga');
+
+// Halaman edukasi & tips darurat Warga
+Route::get('/dashboardWarga/edukasi-tips-warga', function () {
+    return view('dashboardWarga.edukasi-tips-warga');
+})->name('edukasi-tips-warga');
+
+// Halaman tambah laporan
+Route::get('/dashboardWarga/tambah-laporan-warga', [DashboardWargaController::class, 'tambahLaporan'])->name('tambah-laporan-warga');
