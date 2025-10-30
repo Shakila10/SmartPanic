@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardRTController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -37,9 +38,14 @@ Route::get('/tips', function(){ return view('tips.index'); })->name('tips.index'
 
 // require __DIR__.'/auth.php';
 
+
 Route::get('/', function () {
     return view('landing');
 });
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
