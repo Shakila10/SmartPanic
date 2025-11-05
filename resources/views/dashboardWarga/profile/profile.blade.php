@@ -173,7 +173,7 @@
     border-top: 1px solid rgba(255,255,255,0.25);
     border-radius: 10px 10px 0 0;
     box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
-    width: 100%;
+    width: 95%;
 
     margin-top: 60px;
 }
@@ -204,7 +204,32 @@ footer .material-icons-outlined {
 
     <div class="container">
         <!-- SIDEBAR -->
-       @include('dashboardWarga.layout.sidebar')
+        <div class="sidebar">
+            <div>
+                <div class="menu">
+                    <a href="{{ route('dashboardWarga') }}" class="menu-item">
+                        <span class="material-icons-outlined">home</span> Beranda
+                    </a>
+                    <a href="{{ route('tambah-laporan-warga') }}" class="menu-item">
+                        <span class="material-icons-outlined">post_add</span> Tambah Laporan
+                    </a>
+                    <a href="{{ route('edukasi-tips-warga') }}" class="menu-item">
+                        <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
+                    </a>
+                </div>
+            </div>
+
+            <a href="{{ route('logout') }}" 
+   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+   class="logout">
+    <span class="material-icons-outlined">logout</span> Logout
+</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+        </div>
+
         <!-- MAIN PROFILE -->
         <div class="main">
             <div class="profile-card">
@@ -218,7 +243,7 @@ footer .material-icons-outlined {
                 </div>
             </div>
 
-            @include('dashboardWarga.layout.footer')
+            @include('dashboardWarga.layout.footer')\
         </div>
     </div>
 

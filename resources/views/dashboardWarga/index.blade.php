@@ -54,8 +54,6 @@
         .menu-item { display: flex; align-items: center; gap: 16px; padding: 10px; text-decoration: none; color: var(--color-primary); font-weight: 500; font-size: 16px; border-radius: 8px; transition: all 0.2s ease; }
         .menu-item:hover, .menu-item.active { background-color: var(--color-primary); color: var(--color-secondary); transform: translateX(5px); }
         .menu-item .material-icons-outlined { font-size: 26px; }
-        .logout { display: flex; align-items: center; gap: 15px; margin-top: 30px; text-decoration: none; color: var(--color-primary); font-weight: 500; transition: 0.2s; }
-        .logout:hover { color: var(--color-hover); }
 
         /* === MAIN === */
         .main { flex: 1; background-color: var(--color-primary); display: flex; flex-direction: column; justify-content: space-between; padding: 30px 40px; position: relative; }

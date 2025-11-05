@@ -18,7 +18,4 @@
         </div>
     </div>
 
-    <a href="#" class="logout">
-        <span class="material-icons-outlined">logout</span> Logout
-    </a>
 </div>

@@ -173,7 +173,7 @@
     border-top: 1px solid rgba(255,255,255,0.25);
     border-radius: 10px 10px 0 0;
     box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
-    width: 100%;
+    width: 95%;
 
     margin-top: 60px;
 }
@@ -222,9 +222,15 @@ footer .material-icons-outlined {
                 </div>
             </div>
 
-            <a href="#" class="logout">
-                <span class="material-icons-outlined">logout</span> Logout
-            </a>
+            <a href="{{ route('logout') }}" 
+   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+   class="logout">
+    <span class="material-icons-outlined">logout</span> Logout
+</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
         </div>
 
         <!-- MAIN PROFILE -->

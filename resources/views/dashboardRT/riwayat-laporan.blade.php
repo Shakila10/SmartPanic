@@ -96,17 +96,6 @@
 
         .menu-item .material-icons-outlined { font-size: 26px; }
 
-        .logout {
-            display: flex; align-items: center; gap: 15px;
-            margin-top: 30px;
-            text-decoration: none;
-            color: var(--color-primary);
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .logout:hover { color: var(--color-hover); }
-
         /* MAIN */
         .main {
             flex: 1;
@@ -236,10 +225,10 @@
                     <a href="{{ route('dashboardRT') }}" class="menu-item">
                         <span class="material-icons-outlined">home</span> Beranda
                     </a>
-                    <a href="{{ route('tambah-laporan') }}" class="menu-item active">
+                    <a href="{{ route('tambah-laporan') }}" class="menu-item">
                         <span class="material-icons-outlined">post_add</span> Tambah Laporan
                     </a>
-                    <a href="{{ route('riwayat-laporan') }}" class="menu-item">
+                    <a href="{{ route('riwayat-laporan') }}" class="menu-item active">
                         <span class="material-icons-outlined">history</span> Riwayat Laporan
                     </a>
                     <a href="{{ route('edukasi-tips') }}" class="menu-item">
@@ -248,9 +237,6 @@
                 </div>
             </div>
 
-            <a href="#" class="logout">
-                <span class="material-icons-outlined">logout</span> Logout
-            </a>
         </div>
 
         <!-- MAIN CONTENT -->

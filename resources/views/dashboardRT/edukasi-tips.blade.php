@@ -96,17 +96,6 @@
 
         .menu-item .material-icons-outlined { font-size: 26px; }
 
-        .logout {
-            display: flex; align-items: center; gap: 15px;
-            margin-top: 30px;
-            text-decoration: none;
-            color: var(--color-primary);
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .logout:hover { color: var(--color-hover); }
-
         /* === MAIN === */
         .main {
             flex: 1;
@@ -253,10 +242,7 @@
                     </a>
                 </div>
             </div>
-
-            <a href="#" class="logout">
-                <span class="material-icons-outlined">logout</span> Logout
-            </a>
+            
         </div>
 
         <!-- MAIN CONTENT -->
