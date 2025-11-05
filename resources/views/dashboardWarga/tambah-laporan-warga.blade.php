@@ -139,7 +139,7 @@
 
         .form-section {
             width: 50%;
-            max-width: 450px;  /* Mengecilkan form */
+            max-width: 450px;
         }
 
         .report-section {
@@ -212,6 +212,16 @@
 
         .icon-bg .material-icons-round { font-size: 32px; }
 
+        /* === INPUT FILE === */
+        input[type="file"] {
+            border: 1.5px solid var(--color-primary);
+            border-radius: 6px;
+            padding: 8px;
+            background-color: #fff;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+
         /* === FOOTER === */
         footer {
             display: flex;
@@ -244,10 +254,9 @@
                     <a href="{{ route('tambah-laporan-warga') }}" class="menu-item active">
                         <span class="material-icons-outlined">post_add</span> Tambah Laporan
                     </a>
-                <a href="{{ route('edukasi-tips-warga') }}" class="menu-item">
+                    <a href="{{ route('edukasi-tips-warga') }}" class="menu-item">
                         <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
                     </a>
-
                 </div>
             </div>
 
@@ -280,7 +289,7 @@
                 <!-- === FORM LAPORAN DARURAT === -->
                 <section class="form-section">
                     <h3>Formulir Laporan Darurat</h3>
-                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm">
+                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm" enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="nama" placeholder="Nama Pelapor" required>
 
@@ -297,6 +306,17 @@
 
                         <input type="text" name="lokasi" placeholder="Lokasi Kejadian" required>
                         <textarea name="deskripsi" placeholder="Deskripsi Singkat Kejadian" required></textarea>
+
+                        <label for="foto">Foto Kejadian (opsional):</label>
+                        <input type="file" name="foto" id="foto" accept="image/*">
+
+                        <div id="previewContainer" style="display:none; text-align:center;">
+                            <p style="font-size:14px; color:var(--color-primary); font-weight:500;">Preview Foto:</p>
+                            <img id="previewImage" src="#" alt="Preview Foto" style="max-width:100%; max-height:200px; border-radius:8px; border:1.5px solid var(--color-primary); object-fit:cover; margin-bottom:10px;">
+                            <br>
+                            <button type="button" id="hapusFotoBtn" style="background-color:#b3261e; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer;">Hapus Foto</button>
+                        </div>
+
                         <button type="submit">Kirim Laporan</button>
                     </form>
                 </section>
@@ -307,7 +327,7 @@
     </div>
 
     <script>
-        // Munculkan input tambahan bila memilih "Lainnya"
+        // === Input tambahan bila memilih "Lainnya" ===
         const jenisInsiden = document.getElementById('jenisInsiden');
         const lainnyaInput = document.getElementById('lainnyaInput');
 
@@ -320,6 +340,31 @@
                 lainnyaInput.required = false;
                 lainnyaInput.value = '';
             }
+        });
+
+        // === Preview & Hapus Foto ===
+        const fotoInput = document.getElementById('foto');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const hapusFotoBtn = document.getElementById('hapusFotoBtn');
+
+        fotoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        });
+
+        hapusFotoBtn.addEventListener('click', function() {
+            fotoInput.value = '';
+            previewContainer.style.display = 'none';
         });
     </script>
 </body>

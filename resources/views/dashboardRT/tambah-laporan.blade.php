@@ -139,7 +139,7 @@
 
         .form-section {
             width: 50%;
-            max-width: 450px;  /* Mengecilkan form */
+            max-width: 450px;
         }
 
         .report-section {
@@ -244,13 +244,12 @@
                     <a href="{{ route('tambah-laporan') }}" class="menu-item active">
                         <span class="material-icons-outlined">post_add</span> Tambah Laporan
                     </a>
-                   <a href="{{ route('riwayat-laporan') }}" class="menu-item">
-                    <span class="material-icons-outlined">history</span> Riwayat Laporan
-                </a>
-                <a href="{{ route('edukasi-tips') }}" class="menu-item">
+                    <a href="{{ route('riwayat-laporan') }}" class="menu-item">
+                        <span class="material-icons-outlined">history</span> Riwayat Laporan
+                    </a>
+                    <a href="{{ route('edukasi-tips') }}" class="menu-item">
                         <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
                     </a>
-
                 </div>
             </div>
 
@@ -283,11 +282,11 @@
                 <!-- === FORM LAPORAN DARURAT === -->
                 <section class="form-section">
                     <h3>Formulir Laporan Darurat</h3>
-                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm">
+                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" name="nama" placeholder="Nama Pelapor" required>
+                        <input type="text" name="nama_pelapor" placeholder="Nama Pelapor" required>
 
-                        <select name="jenis_insiden" id="jenisInsiden" required>
+                        <select name="jenis_laporan" id="jenisInsiden" required>
                             <option value="" disabled selected>Pilih Jenis Insiden</option>
                             <option value="Kebakaran">Kebakaran</option>
                             <option value="Kesehatan">Kesehatan / Medis</option>
@@ -300,6 +299,19 @@
 
                         <input type="text" name="lokasi" placeholder="Lokasi Kejadian" required>
                         <textarea name="deskripsi" placeholder="Deskripsi Singkat Kejadian" required></textarea>
+
+                        <!-- === UPLOAD FOTO KEJADIAN === -->
+                        <label style="font-weight:600; font-size:14px;">Foto Kejadian (Opsional):</label>
+                        <input type="file" name="foto_kejadian" id="fotoKejadian" accept="image/*">
+                        
+                        <!-- Preview -->
+                        <div id="previewContainer" style="display:none; text-align:center;">
+                            <p style="font-size:14px; color:var(--color-primary); font-weight:500;">Preview Foto:</p>
+                            <img id="previewImage" src="#" alt="Preview Foto" style="max-width:100%; max-height:200px; border-radius:8px; border:1.5px solid var(--color-primary); object-fit:cover; margin-bottom:10px;">
+                            <br>
+                            <button type="button" id="hapusFotoBtn" style="background-color:#b3261e; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer;">Hapus Foto</button>
+                        </div>
+
                         <button type="submit">Kirim Laporan</button>
                     </form>
                 </section>
@@ -310,7 +322,7 @@
     </div>
 
     <script>
-        // Munculkan input tambahan bila memilih "Lainnya"
+        // Input tambahan bila memilih "Lainnya"
         const jenisInsiden = document.getElementById('jenisInsiden');
         const lainnyaInput = document.getElementById('lainnyaInput');
 
@@ -323,6 +335,30 @@
                 lainnyaInput.required = false;
                 lainnyaInput.value = '';
             }
+        });
+
+        // Preview & hapus foto kejadian
+        const fotoInput = document.getElementById('fotoKejadian');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const hapusFotoBtn = document.getElementById('hapusFotoBtn');
+
+        fotoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    previewImage.src = evt.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        hapusFotoBtn.addEventListener('click', function() {
+            fotoInput.value = '';
+            previewImage.src = '#';
+            previewContainer.style.display = 'none';
         });
     </script>
 </body>

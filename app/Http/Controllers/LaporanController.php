@@ -21,10 +21,19 @@ class LaporanController extends Controller
             'jenis_laporan' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'lokasi' => 'required|string|max:255',
+            'foto_kejadian' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
+        $data = $request->all();
+
+    if ($request->hasFile('foto_kejadian')) {
+        $path = $request->file('foto_kejadian')->store('laporan_foto', 'public');
+        $data['foto_kejadian'] = $path;
+    }
+    
         Laporan::create($request->all());
 
         return redirect()->back()->with('success', 'Laporan berhasil dikirim!');
+        return redirect()->back()->with('error', 'Gagal mengirim laporan.');
     }
 }
