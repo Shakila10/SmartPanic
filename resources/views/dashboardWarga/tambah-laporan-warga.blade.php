@@ -326,6 +326,26 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById('laporanForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Tampilkan popup konfirmasi
+            Swal.fire({
+                title: 'Laporan Terkirim!',
+                text: 'Terima kasih, laporan Anda sudah kami terima.',
+                icon: 'success',
+                confirmButtonColor: '#800020',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                this.submit(); // lanjutkan kirim form ke server
+            });
+        });
+    </script>
+
+
     <script>
         // === Input tambahan bila memilih "Lainnya" ===
         const jenisInsiden = document.getElementById('jenisInsiden');
