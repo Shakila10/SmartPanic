@@ -24,7 +24,7 @@
             color: var(--color-primary);
         }
 
-        /* === HEADER === */
+        /* HEADER */
         .top-header {
             width: 100%;
             background-color: var(--color-secondary);
@@ -33,16 +33,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
-            box-sizing: border-box;
             border-bottom: 3px solid var(--color-primary);
             position: fixed;
             top: 0;
             left: 0;
             z-index: 100;
         }
-        /* Di dalam tag <style> pada riwayat-laporan dan tambah-laporan */
-.header-center { font-size: 18px; font-weight: 600; margin: 0; }
-
+        .header-center { font-size: 18px; font-weight: 600; margin: 0; }
         .header-left { display: flex; align-items: center; gap: 12px; }
         .header-left img { height: 38px; width: auto; }
         .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
@@ -58,24 +55,22 @@
             font-size: 26px;
         }
 
-        /* === LAYOUT === */
+        /* LAYOUT */
         .container {
             display: flex;
             height: calc(100vh - 70px);
             margin-top: 70px;
-            overflow: hidden;
         }
 
-        /* === SIDEBAR === */
+        /* SIDEBAR */
         .sidebar {
             width: 280px;
             background-color: var(--color-secondary);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 50px 25px 30px 25px;
+            padding: 50px 25px 30px;
             border-right: 3px solid var(--color-primary);
-            box-sizing: border-box;
         }
 
         .menu { display: flex; flex-direction: column; gap: 18px; }
@@ -110,18 +105,15 @@
 
         .logout:hover { color: var(--color-hover); }
 
-        /* === MAIN === */
+        /* MAIN */
         .main {
             flex: 1;
             background-color: var(--color-primary);
             padding: 30px 40px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
-        /* === CONTENT === */
+        /* CONTENT */
         .content-area {
             flex-grow: 1;
             display: flex;
@@ -136,7 +128,6 @@
             margin-bottom: 25px;
         }
 
-        /* Search & Filter */
         .search-filter {
             display: flex;
             justify-content: center;
@@ -157,7 +148,7 @@
             width: 250px;
         }
 
-        /* === CARD LAPORAN === */
+        /* CARD */
         .laporan-card {
             width: 80%;
             background-color: var(--color-secondary);
@@ -189,9 +180,7 @@
             justify-content: center;
         }
 
-        .icon-bg .material-icons-round {
-            font-size: 30px;
-        }
+        .icon-bg .material-icons-round { font-size: 30px; }
 
         .laporan-text h3 {
             font-size: 16px;
@@ -211,12 +200,13 @@
             padding: 8px 14px;
             border-radius: 8px;
             color: #fff;
+            text-transform: capitalize;
         }
-
+        .status.diterima { background-color: #c77800; }
         .status.ditangani { background-color: #ffa726; }
         .status.selesai { background-color: #43a047; }
+        .status.ditolak { background-color: #e53935; }
 
-        /* === FOOTER === */
         footer {
             display: flex;
             justify-content: space-between;
@@ -238,7 +228,6 @@
 <body>
     @include('dashboardRT.layout.header')
 
-
     <div class="container">
         <div class="sidebar">
             <div>
@@ -255,10 +244,8 @@
                     <a href="{{ route('edukasi-tips') }}" class="menu-item">
                         <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
                     </a>
-
                 </div>
             </div>
-            
 
             <a href="#" class="logout">
                 <span class="material-icons-outlined">logout</span> Logout
@@ -270,57 +257,56 @@
             <div class="content-area">
                 <h2>Riwayat Laporan</h2>
 
+                <!-- Filter (opsional) -->
                 <div class="search-filter">
-                    <input type="text" placeholder="Cari Laporan">
+                    <input type="text" placeholder="Cari laporan...">
                     <select>
-                        <option value="">Filter</option>
-                        <option value="sedang-ditangani">Sedang Ditangani</option>
-                        <option value="selesai">Selesai</option>
+                        <option value="">Filter Status</option>
+                        <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                        <option value="Sedang Ditangani">Sedang Ditangani</option>
+                        <option value="Selesai">Selesai</option>
                     </select>
                 </div>
 
-                <!-- CARD LAPORAN DENGAN ICON -->
-                <div class="laporan-card">
-                    <div class="laporan-info">
-                        <div class="icon-bg">
-                            <span class="material-icons-round" style="color:#c62828;">fire_extinguisher</span>
-                        </div>
-                        <div class="laporan-text">
-                            <h3>Laporan kebakaran</h3>
-                            <p>Shakila Rama Wulandari</p>
-                            <p>No. 35</p>
-                        </div>
-                    </div>
-                    <div class="status ditangani">Sedang Ditangani</div>
-                </div>
+                <!-- CARD DINAMIS -->
+                @forelse($laporans as $laporan)
+                    @php
+                        $icon = 'report';
+                        $color = '#c62828';
 
-                <div class="laporan-card">
-                    <div class="laporan-info">
-                        <div class="icon-bg">
-                            <span class="material-icons-round" style="color:#1565c0;">medical_services</span>
-                        </div>
-                        <div class="laporan-text">
-                            <h3>Permintaan bantuan medis</h3>
-                            <p>Shakila Rama Wulandari</p>
-                            <p>No. 35</p>
-                        </div>
-                    </div>
-                    <div class="status selesai">Selesai</div>
-                </div>
+                        if (str_contains(strtolower($laporan->jenis_laporan), 'medis')) {
+                            $icon = 'medical_services'; $color = '#1565c0';
+                        } elseif (str_contains(strtolower($laporan->jenis_laporan), 'kebakaran')) {
+                            $icon = 'fire_extinguisher'; $color = '#d32f2f';
+                        } elseif (str_contains(strtolower($laporan->jenis_laporan), 'polisi') || str_contains(strtolower($laporan->jenis_laporan), 'maling')) {
+                            $icon = 'local_police'; $color = '#2e7d32';
+                        }
 
-                <div class="laporan-card">
-                    <div class="laporan-info">
-                        <div class="icon-bg">
-                            <span class="material-icons-round" style="color:#2e7d32;">local_police</span>
+                        $statusClass = match(strtolower($laporan->status)) {
+                            'menunggu verifikasi' => 'diterima',
+                            'sedang ditangani' => 'ditangani',
+                            'selesai' => 'selesai',
+                            'ditolak' => 'ditolak',
+                            default => 'diterima',
+                        };
+                    @endphp
+
+                    <div class="laporan-card">
+                        <div class="laporan-info">
+                            <div class="icon-bg">
+                                <span class="material-icons-round" style="color:{{ $color }}">{{ $icon }}</span>
+                            </div>
+                            <div class="laporan-text">
+                                <h3>{{ ucfirst($laporan->jenis_laporan) }}</h3>
+                                <p>{{ $laporan->nama_pelapor }}</p>
+                                <p>{{ $laporan->lokasi }}</p>
+                            </div>
                         </div>
-                        <div class="laporan-text">
-                            <h3>Laporan bencana kemalingan</h3>
-                            <p>Shakila Rama Wulandari</p>
-                            <p>No. 35</p>
-                        </div>
+                        <div class="status {{ $statusClass }}">{{ ucfirst($laporan->status) }}</div>
                     </div>
-                    <div class="status selesai">Selesai</div>
-                </div>
+                @empty
+                    <p>Tidak ada laporan yang ditemukan.</p>
+                @endforelse
             </div>
 
             @include('dashboardRT.layout.footer')

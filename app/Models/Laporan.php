@@ -14,6 +14,11 @@ class Laporan extends Model
         'jenis_laporan',
         'deskripsi',
         'lokasi',
-        'status',
+        'foto_kejadian',
+        'status', 
     ];
 }
+
+
+
+

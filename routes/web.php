@@ -76,10 +76,7 @@ Route::get('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'tambah
 Route::post('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'simpanLaporan'])->name('laporan.simpan');
 
 // Halaman riwayat laporan RT
-Route::get('/dashboardRT/riwayat-laporan', function () {
-    return view('dashboardRT.riwayat-laporan');
-})->name('riwayat-laporan');
-
+Route::get('/dashboardRT/riwayat-laporan', [LaporanController::class, 'riwayat'])->name('riwayat-laporan');
 // Halaman edukasi & tips darurat RT
 Route::get('/dashboardRT/edukasi-tips', function () {
     return view('dashboardRT.edukasi-tips');
@@ -98,7 +95,12 @@ Route::get('/dashboardWarga/edukasi-tips-warga', function () {
 // Halaman tambah laporan
 Route::get('/dashboardWarga/tambah-laporan-warga', [DashboardWargaController::class, 'tambahLaporan'])->name('tambah-laporan-warga');
 
+<<<<<<< HEAD
 // Route untuk halaman profil di Dashboard RT
 Route::get('/dashboardRT/profile', function () {
     return view('dashboardRT.profile.profile');
 })->name('dashboardRT.profile');
+=======
+//api notifikasi
+Route::post('/laporan/store', [LaporanController::class, 'store'])->name('laporan.store');
+>>>>>>> 33335a2 (ubah dikit)

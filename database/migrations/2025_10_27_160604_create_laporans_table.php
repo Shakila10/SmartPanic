@@ -12,11 +12,13 @@ return new class extends Migration
         $table->id();
         $table->string('nama_pelapor');
         $table->string('jenis_laporan');
-        $table->string('lokasi');
         $table->text('deskripsi');
-        $table->string('status')->default('Menunggu');
+        $table->string('lokasi');
+        $table->string('foto_kejadian')->nullable();
+        $table->string('status')->default('Menunggu Verifikasi');
         $table->timestamps();
     });
+
 }
 
     public function down(): void
@@ -24,3 +26,5 @@ return new class extends Migration
         Schema::dropIfExists('laporans');
     }
 };
+
+
