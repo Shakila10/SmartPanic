@@ -25,7 +25,7 @@
         }
 
         /* HEADER */
-        .top-header {
+       .top-header {
             width: 100%;
             background-color: var(--color-secondary);
             color: var(--color-primary);
@@ -33,16 +33,17 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
+            box-sizing: border-box;
             border-bottom: 3px solid var(--color-primary);
             position: fixed;
             top: 0;
             left: 0;
             z-index: 100;
         }
-        .header-center { font-size: 18px; font-weight: 600; margin: 0; }
         .header-left { display: flex; align-items: center; gap: 12px; }
         .header-left img { height: 38px; width: auto; }
         .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+        .header-center { font-size: 18px; font-weight: 600; margin: 0; }
         .profile {
             background-color: var(--color-primary);
             width: 45px; height: 45px;
@@ -63,14 +64,15 @@
         }
 
         /* SIDEBAR */
-        .sidebar {
+         .sidebar {
             width: 280px;
             background-color: var(--color-secondary);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 50px 25px 30px;
+            padding: 50px 25px 30px 25px;
             border-right: 3px solid var(--color-primary);
+            box-sizing: border-box;
         }
 
         .menu { display: flex; flex-direction: column; gap: 18px; }
@@ -227,18 +229,17 @@
 
 <body>
     @include('dashboardRT.layout.header')
-
-    <div class="container">
+ <div class="container">
         <div class="sidebar">
             <div>
                 <div class="menu">
                     <a href="{{ route('dashboardRT') }}" class="menu-item">
                         <span class="material-icons-outlined">home</span> Beranda
                     </a>
-                    <a href="{{ route('tambah-laporan') }}" class="menu-item">
+                    <a href="{{ route('tambah-laporan') }}" class="menu-item active">
                         <span class="material-icons-outlined">post_add</span> Tambah Laporan
                     </a>
-                    <a href="{{ route('riwayat-laporan') }}" class="menu-item active">
+                    <a href="{{ route('riwayat-laporan') }}" class="menu-item">
                         <span class="material-icons-outlined">history</span> Riwayat Laporan
                     </a>
                     <a href="{{ route('edukasi-tips') }}" class="menu-item">

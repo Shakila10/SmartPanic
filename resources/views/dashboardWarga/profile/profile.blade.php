@@ -200,33 +200,11 @@ footer .material-icons-outlined {
 </head>
 
 <body>
-    @include('dashboardRT.layout.header')
+    @include('dashboardWarga.layout.header')
 
     <div class="container">
         <!-- SIDEBAR -->
-        <div class="sidebar">
-            <div>
-                <div class="menu">
-                    <a href="{{ route('dashboardRT') }}" class="menu-item">
-                        <span class="material-icons-outlined">home</span> Beranda
-                    </a>
-                    <a href="{{ route('tambah-laporan') }}" class="menu-item">
-                        <span class="material-icons-outlined">post_add</span> Tambah Laporan
-                    </a>
-                    <a href="{{ route('riwayat-laporan') }}" class="menu-item">
-                        <span class="material-icons-outlined">history</span> Riwayat Laporan
-                    </a>
-                    <a href="{{ route('edukasi-tips') }}" class="menu-item">
-                        <span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat
-                    </a>
-                </div>
-            </div>
-
-            <a href="#" class="logout">
-                <span class="material-icons-outlined">logout</span> Logout
-            </a>
-        </div>
-
+       @include('dashboardWarga.layout.sidebar')
         <!-- MAIN PROFILE -->
         <div class="main">
             <div class="profile-card">
@@ -240,13 +218,13 @@ footer .material-icons-outlined {
                 </div>
             </div>
 
-            @include('dashboardRT.layout.footer')\
+            @include('dashboardWarga.layout.footer')
         </div>
     </div>
 
     <script>
         document.querySelector('.profile').addEventListener('click', () => {
-            window.location.href = "{{ route('dashboardRT.profile') }}";
+            window.location.href = "{{ route('dashboardWarga.profile') }}";
         });
     </script>
 

@@ -95,12 +95,15 @@ Route::get('/dashboardWarga/edukasi-tips-warga', function () {
 // Halaman tambah laporan
 Route::get('/dashboardWarga/tambah-laporan-warga', [DashboardWargaController::class, 'tambahLaporan'])->name('tambah-laporan-warga');
 
-<<<<<<< HEAD
 // Route untuk halaman profil di Dashboard RT
 Route::get('/dashboardRT/profile', function () {
     return view('dashboardRT.profile.profile');
 })->name('dashboardRT.profile');
-=======
+
+Route::get('/dashboardWarga/profile', function () {
+    return view('dashboardWarga.profile.profile');
+})->name('dashboardWarga.profile');
+
 //api notifikasi
 Route::post('/laporan/store', [LaporanController::class, 'store'])->name('laporan.store');
->>>>>>> 33335a2 (ubah dikit)
+

@@ -10,3 +10,9 @@
         </div>
     </div>
 </header>
+
+<script>
+    document.querySelector('.profile').addEventListener('click', () => {
+        window.location.href = "{{ route('dashboardWarga.profile') }}";
+    });
+</script>
