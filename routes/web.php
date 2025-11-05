@@ -104,6 +104,11 @@ Route::get('/dashboardWarga/profile', function () {
     return view('dashboardWarga.profile.profile');
 })->name('dashboardWarga.profile');
 
+// Route untuk halaman profil di Dashboard RT
+Route::get('/dashboardRT/edit-profile', function () {
+    return view('dashboardRT.profile.edit-profile');
+})->name('dashboardRT.edit-profile');
+
 //api notifikasi
 Route::post('/laporan/store', [LaporanController::class, 'store'])->name('laporan.store');
 
