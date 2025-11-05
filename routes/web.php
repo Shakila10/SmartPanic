@@ -95,10 +95,20 @@ Route::get('/dashboardWarga/edukasi-tips-warga', function () {
 // Halaman tambah laporan
 Route::get('/dashboardWarga/tambah-laporan-warga', [DashboardWargaController::class, 'tambahLaporan'])->name('tambah-laporan-warga');
 
-// Route untuk halaman profil di Dashboard RT
+
+
+//edit profile rt
 Route::get('/dashboardRT/profile', function () {
     return view('dashboardRT.profile.profile');
 })->name('dashboardRT.profile');
+
+Route::get('/dashboardRT/profile/edit', function () {
+    return view('dashboardRT.profile.edit-profile');
+})->name('dashboardRT.editProfile');
+
+
+
+
 
 Route::get('/dashboardWarga/profile', function () {
     return view('dashboardWarga.profile.profile');
