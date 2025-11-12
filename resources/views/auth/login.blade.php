@@ -77,14 +77,19 @@
             text-align: center;
         }
 
+        /* Kotak input */
         .input-box {
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             margin-bottom: 15px;
+            position: relative;
         }
 
-        .input-box input {
+        .input-box input,
+        .input-box select,
+        .btn-submit {
             width: 100%;
+            max-width: 320px;
             padding: 10px 12px;
             border: 1px solid #FFD6C2;
             border-radius: 8px;
@@ -93,21 +98,43 @@
             box-shadow: 2px 2px 5px rgba(255, 214, 194, 0.3);
             color: #800020;
             font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
+        /* Dropdown styling */
+        .input-box select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%23800020' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 18px;
+            cursor: pointer;
+        }
+
+        .input-box select:hover {
+            border-color: #f1cdb5;
+        }
+
+        .input-box select:focus {
+            border-color: #FFD6C2;
+            box-shadow: 0 0 6px rgba(255, 214, 194, 0.5);
+        }
+
+        /* Tombol submit */
         .btn-submit {
-            width: 110%;
-            max-width: 300px;
             background-color: #FFD6C2;
             color: #800020;
             border: none;
             border-radius: 30px;
-            padding: 10px 0;
             font-weight: 600;
             cursor: pointer;
             margin-top: 10px;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
             transition: all 0.2s;
+            padding: 10px 0;
         }
 
         .btn-submit:hover {
@@ -165,8 +192,8 @@
             cursor: pointer;
             color: #444;
             transition: all 0.2s;
-            max-width: 300px;
-            width: 110%;
+            max-width: 320px;
+            width: 100%;
         }
 
         .btn-google:hover {
@@ -187,7 +214,7 @@
 
             .container {
                 flex-direction: column;
-                max-width: 00px;
+                max-width: 400px;
             }
 
             .logo-section {
@@ -231,6 +258,15 @@
                 <div class="input-box">
                     <input type="text" name="email" placeholder="Enter Username or Email" required>
                 </div>
+
+                <div class="input-box">
+                    <select name="role" id="role" required>
+                        <option value="" disabled selected hidden>Login Sebagai</option>
+                        <option value="user">User Biasa</option>
+                        <option value="rt">Pengurus RT</option>
+                    </select>
+                </div>
+
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Enter Password" required>
                 </div>

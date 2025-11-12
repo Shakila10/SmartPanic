@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Smart Panic Button</title>
 
-    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -29,10 +28,9 @@
             overflow: hidden;
         }
 
-        /* Kiri - Form */
         .form-section {
             flex: 1;
-            background-color: #F4EBD0; /* cream */
+            background-color: #F4EBD0;
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
@@ -60,7 +58,8 @@
             margin-bottom: 15px;
         }
 
-        .input-box input {
+        .input-box input,
+        .input-box select {
             width: 100%;
             padding: 10px 12px;
             border: 1px solid #FFD6C2;
@@ -70,6 +69,24 @@
             box-shadow: 2px 2px 5px rgba(122, 0, 31, 0.2);
             color: #800020;
             font-size: 14px;
+            box-sizing: border-box; /* biar ukuran sama pas */
+        }
+
+        /* --- tambahan khusus untuk dropdown --- */
+        .input-box select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%23800020' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            cursor: pointer;
+        }
+
+        .input-box select:focus {
+            border-color: #A3002E;
+            box-shadow: 0 0 6px rgba(128, 0, 32, 0.4);
         }
 
         .btn-submit {
@@ -122,13 +139,8 @@
             background-color: #800020;
         }
 
-        .or::before {
-            left: 0;
-        }
-
-        .or::after {
-            right: 0;
-        }
+        .or::before { left: 0; }
+        .or::after { right: 0; }
 
         .btn-google {
             display: flex;
@@ -146,16 +158,13 @@
             width: 110%;
         }
 
-        .btn-google:hover {
-            background-color: #f7f7f7;
-        }
+        .btn-google:hover { background-color: #f7f7f7; }
 
         .btn-google img {
             width: 18px;
             margin-right: 8px;
         }
 
-        /* Kanan - Logo */
         .logo-section {
             flex: 1;
             background-color: #800020;
@@ -178,84 +187,70 @@
             text-align: center;
         }
 
-        /* Responsif untuk HP */
         @media (max-width: 768px) {
-            body {
-                height: auto;
-                padding: 20px 0;
-            }
-
-            .container {
-                flex-direction: column;
-                max-width: 400px;
-            }
-
-            .logo-section {
-                order: -1;
-                padding: 20px;
-            }
-
-            .logo-section img {
-                width: 120px;
-            }
-
-            .form-section {
-                padding: 30px 20px;
-            }
-
-            .input-box input {
-                font-size: 13px;
-            }
-
-            .btn-google {
-                font-size: 12px;
-            }
+            body { height: auto; padding: 20px 0; }
+            .container { flex-direction: column; max-width: 400px; }
+            .logo-section { order: -1; padding: 20px; }
+            .logo-section img { width: 120px; }
+            .form-section { padding: 30px 20px; }
+            .input-box input { font-size: 13px; }
+            .btn-google { font-size: 12px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Form Section -->
-        <div class="form-section">
-            <h2>Sign Up!</h2>
-            <p>Buat akun baru Anda</p>
+<div class="container">
+    <div class="form-section">
+        <h2>Sign Up!</h2>
+        <p>Buat akun baru Anda</p>
 
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <div class="input-box">
-                    <input type="text" name="username" placeholder="Enter Username" required>
-                </div>
-                <div class="input-box">
-                    <input type="email" name="email" placeholder="Enter Email" required>
-                </div>
-                <div class="input-box">
-                    <input type="password" name="password" placeholder="Enter Password" required>
-                </div>
-                <div class="input-box">
-                    <input type="password" name="password_confirmation" placeholder="Enter Password confirmation" required>
-                </div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-                <button type="submit" class="btn-submit">Buat Akun</button>
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Nama Lengkap" required>
+            </div>
 
-                <div class="text-muted">
-                    Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
-                </div>
+            <div class="input-box">
+                <input type="text" name="phone" placeholder="Nomor HP (contoh: 08xxx)" required>
+            </div>
 
-                <div class="or">ATAU</div>
+            <div class="input-box">
+                <select name="role" required>
+                    <option value="" disabled selected hidden>Daftar Sebagai</option>
+                    <option value="user">User Biasa</option>
+                    <option value="rt">Pengurus RT</option>
+                </select>
+            </div>
 
-                <button type="button" class="btn-google">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
-                    Lanjutkan dengan Google
-                </button>
-            </form>
-        </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
 
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <img src="{{ asset('images/LogoMerahSmartPanic.png') }}" alt="Logo Smart Panic Button">
-        </div>
+            <div class="input-box">
+                <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Buat Akun</button>
+
+            <div class="text-muted">
+                Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
+            </div>
+
+            <div class="or">ATAU</div>
+
+            <button type="button" class="btn-google">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                Lanjutkan dengan Google
+            </button>
+        </form>
     </div>
+
+    <div class="logo-section">
+        <img src="{{ asset('images/LogoMerahSmartPanic.png') }}" alt="Logo Smart Panic Button">
+    </div>
+</div>
 
 </body>
 </html>
