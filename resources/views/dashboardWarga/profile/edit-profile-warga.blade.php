@@ -249,16 +249,15 @@
 </head>
 
 <body>
-  @include('dashboardRT.layout.header')
+  @include('dashboardWarga.layout.header')
 
   <div class="container">
     <!-- SIDEBAR -->
     <div class="sidebar">
       <div>
         <div class="menu">
-          <a href="{{ route('dashboardRT') }}" class="menu-item"><span class="material-icons-outlined">home</span> Beranda</a>
+          <a href="{{ route('dashboardWarga') }}" class="menu-item"><span class="material-icons-outlined">home</span> Beranda</a>
           <a href="{{ route('tambah-laporan') }}" class="menu-item"><span class="material-icons-outlined">post_add</span> Tambah Laporan</a>
-          <a href="{{ route('riwayat-laporan') }}" class="menu-item"><span class="material-icons-outlined">history</span> Riwayat Laporan</a>
           <a href="{{ route('edukasi-tips') }}" class="menu-item"><span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat</a>
         </div>
       </div>
@@ -301,7 +300,7 @@
         </form>
       </div>
 
-      @include('dashboardRT.layout.footer')
+      @include('dashboardWarga.layout.footer')
     </div>
   </div>
 
@@ -325,11 +324,11 @@
     document.getElementById("editProfileForm").addEventListener("submit", function(e) {
       e.preventDefault();
       alert("Perubahan profil berhasil disimpan!");
-      window.location.href = "{{ route('dashboardRT.profile') }}";
+      window.location.href = "{{ route('dashboardWarga.profile') }}";
     });
 
     document.getElementById("cancelBtn").addEventListener("click", function() {
-      window.location.href = "{{ route('dashboardRT.profile') }}";
+      window.location.href = "{{ route('dashboardWarga.profile') }}";
     });
   </script>
 </body>

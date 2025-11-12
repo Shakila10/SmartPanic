@@ -115,6 +115,11 @@ Route::get('/dashboardWarga/profile', function () {
 })->name('dashboardWarga.profile');
 
 // Route untuk halaman profil di Dashboard RT
+Route::get('/dashboardWarga/edit-profile-warga', function () {
+    return view('dashboardWarga.profile.edit-profile-warga');
+})->name('dashboardWarga.edit-profile');
+
+// Route untuk halaman profil di Dashboard RT
 Route::get('/dashboardRT/edit-profile', function () {
     return view('dashboardRT.profile.edit-profile');
 })->name('dashboardRT.edit-profile');
