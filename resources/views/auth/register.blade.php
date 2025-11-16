@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,8 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color: #800020; /* maroon */
+            background-color: #800020;
+            /* maroon */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,7 +25,7 @@
             width: 900px;
             max-width: 95%;
             background-color: #800020;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 12px;
             overflow: hidden;
         }
@@ -69,7 +71,8 @@
             box-shadow: 2px 2px 5px rgba(122, 0, 31, 0.2);
             color: #800020;
             font-size: 14px;
-            box-sizing: border-box; /* biar ukuran sama pas */
+            box-sizing: border-box;
+            /* biar ukuran sama pas */
         }
 
         /* --- tambahan khusus untuk dropdown --- */
@@ -100,7 +103,7 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             transition: all 0.2s;
         }
 
@@ -139,8 +142,13 @@
             background-color: #800020;
         }
 
-        .or::before { left: 0; }
-        .or::after { right: 0; }
+        .or::before {
+            left: 0;
+        }
+
+        .or::after {
+            right: 0;
+        }
 
         .btn-google {
             display: flex;
@@ -158,7 +166,9 @@
             width: 110%;
         }
 
-        .btn-google:hover { background-color: #f7f7f7; }
+        .btn-google:hover {
+            background-color: #f7f7f7;
+        }
 
         .btn-google img {
             width: 18px;
@@ -188,69 +198,100 @@
         }
 
         @media (max-width: 768px) {
-            body { height: auto; padding: 20px 0; }
-            .container { flex-direction: column; max-width: 400px; }
-            .logo-section { order: -1; padding: 20px; }
-            .logo-section img { width: 120px; }
-            .form-section { padding: 30px 20px; }
-            .input-box input { font-size: 13px; }
-            .btn-google { font-size: 12px; }
+            body {
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .container {
+                flex-direction: column;
+                max-width: 400px;
+            }
+
+            .logo-section {
+                order: -1;
+                padding: 20px;
+            }
+
+            .logo-section img {
+                width: 120px;
+            }
+
+            .form-section {
+                padding: 30px 20px;
+            }
+
+            .input-box input {
+                font-size: 13px;
+            }
+
+            .btn-google {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="form-section">
-        <h2>Sign Up!</h2>
-        <p>Buat akun baru Anda</p>
+    <div class="container">
+        <div class="form-section">
+            <h2>Sign Up!</h2>
+            <p>Buat akun baru Anda</p>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-            <div class="input-box">
-                <input type="text" name="username" placeholder="Nama Lengkap" required>
-            </div>
+                <div class="input-box">
+                    <input type="text" name="username" placeholder="Nama Lengkap" required>
+                </div>
 
-            <div class="input-box">
-                <input type="text" name="phone" placeholder="Nomor HP (contoh: 08xxx)" required>
-            </div>
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
 
-            <div class="input-box">
-                <select name="role" required>
-                    <option value="" disabled selected hidden>Daftar Sebagai</option>
-                    <option value="user">User Biasa</option>
-                    <option value="rt">Pengurus RT</option>
-                </select>
-            </div>
 
-            <div class="input-box">
-                <input type="password" name="password" placeholder="Password" required>
-            </div>
+                <div class="input-box">
+                    <input type="text" name="no_hp" placeholder="Nomor HP (contoh: 08xxx)" required>
+                </div>
 
-            <div class="input-box">
-                <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
-            </div>
+                <div class="input-box">
+                    <select name="role_id" required>
+                        <option value="" disabled selected hidden>Daftar Sebagai</option>
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <button type="submit" class="btn-submit">Buat Akun</button>
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
 
-            <div class="text-muted">
-                Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
-            </div>
+                <div class="input-box">
+                    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
+                </div>
 
-            <div class="or">ATAU</div>
+                <button type="submit" class="btn-submit">Buat Akun</button>
 
-            <button type="button" class="btn-google">
-                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
-                Lanjutkan dengan Google
-            </button>
-        </form>
+                <div class="text-muted">
+                    Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
+                </div>
+
+                <div class="or">ATAU</div>
+
+                <button type="button" class="btn-google">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                    Lanjutkan dengan Google
+                </button>
+            </form>
+        </div>
+
+        <div class="logo-section">
+            <img src="{{ asset('images/LogoMerahSmartPanic.png') }}" alt="Logo Smart Panic Button">
+        </div>
     </div>
-
-    <div class="logo-section">
-        <img src="{{ asset('images/LogoMerahSmartPanic.png') }}" alt="Logo Smart Panic Button">
-    </div>
-</div>
 
 </body>
+
 </html>

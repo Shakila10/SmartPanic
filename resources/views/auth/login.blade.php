@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,8 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color: #F4EBD0; /* cream */
+            background-color: #F4EBD0;
+            /* cream */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,7 +26,7 @@
             width: 900px;
             max-width: 95%;
             background-color: #F4EBD0;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 12px;
             overflow: hidden;
         }
@@ -55,7 +57,8 @@
         /* Kanan - Form */
         .form-section {
             flex: 1;
-            background-color: #800020; /* maroon */
+            background-color: #800020;
+            /* maroon */
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
@@ -132,7 +135,7 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             transition: all 0.2s;
             padding: 10px 0;
         }
@@ -240,6 +243,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -256,15 +260,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="input-box">
-                    <input type="text" name="email" placeholder="Enter Username or Email" required>
-                </div>
-
-                <div class="input-box">
-                    <select name="role" id="role" required>
-                        <option value="" disabled selected hidden>Login Sebagai</option>
-                        <option value="user">User Biasa</option>
-                        <option value="rt">Pengurus RT</option>
-                    </select>
+                    <input type="text" name="email" placeholder="Enter Email" required>
                 </div>
 
                 <div class="input-box">
@@ -272,7 +268,7 @@
                 </div>
 
                 <button type="submit" class="btn-submit">Lanjutkan</button>
-                
+
                 <div class="text-muted">
                     <a href="#">Lupa Password?</a>
                 </div>
@@ -292,4 +288,5 @@
     </div>
 
 </body>
+
 </html>
