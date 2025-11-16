@@ -12,6 +12,9 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    const ROLE_RT = 1;
+    const ROLE_USER = 2;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +24,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'alamat',
+        'no_hp',
+        'photo'
     ];
 
     /**
@@ -44,5 +51,26 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRt()
+    {
+        return $this->role_id === self::ROLE_RT;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUser()
+    {
+        return $this->role_id === self::ROLE_USER;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }
