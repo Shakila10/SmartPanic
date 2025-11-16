@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@
         }
 
         /* HEADER */
-       .top-header {
+        .top-header {
             width: 100%;
             background-color: var(--color-secondary);
             color: var(--color-primary);
@@ -40,17 +41,41 @@
             left: 0;
             z-index: 100;
         }
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .header-left img { height: 38px; width: auto; }
-        .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
-        .header-center { font-size: 18px; font-weight: 600; margin: 0; }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-left img {
+            height: 38px;
+            width: auto;
+        }
+
+        .header-left h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header-center {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
         .profile {
             background-color: var(--color-primary);
-            width: 45px; height: 45px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
         }
+
         .profile .material-icons-outlined {
             color: var(--color-secondary);
             font-size: 26px;
@@ -64,7 +89,7 @@
         }
 
         /* SIDEBAR */
-         .sidebar {
+        .sidebar {
             width: 280px;
             background-color: var(--color-secondary);
             display: flex;
@@ -75,10 +100,16 @@
             box-sizing: border-box;
         }
 
-        .menu { display: flex; flex-direction: column; gap: 18px; }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
 
         .menu-item {
-            display: flex; align-items: center; gap: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             padding: 10px;
             text-decoration: none;
             color: var(--color-primary);
@@ -88,13 +119,16 @@
             transition: all 0.2s ease;
         }
 
-        .menu-item:hover, .menu-item.active {
+        .menu-item:hover,
+        .menu-item.active {
             background-color: var(--color-primary);
             color: var(--color-secondary);
             transform: translateX(5px);
         }
 
-        .menu-item .material-icons-outlined { font-size: 26px; }
+        .menu-item .material-icons-outlined {
+            font-size: 26px;
+        }
 
         /* MAIN */
         .main {
@@ -127,7 +161,8 @@
             margin-bottom: 25px;
         }
 
-        .search-filter input, .search-filter select {
+        .search-filter input,
+        .search-filter select {
             padding: 10px 12px;
             border-radius: 8px;
             border: none;
@@ -149,11 +184,13 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 15px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
             transition: 0.2s;
         }
 
-        .laporan-card:hover { transform: translateY(-3px); }
+        .laporan-card:hover {
+            transform: translateY(-3px);
+        }
 
         .laporan-info {
             display: flex;
@@ -171,7 +208,9 @@
             justify-content: center;
         }
 
-        .icon-bg .material-icons-round { font-size: 30px; }
+        .icon-bg .material-icons-round {
+            font-size: 30px;
+        }
 
         .laporan-text h3 {
             font-size: 16px;
@@ -193,32 +232,53 @@
             color: #fff;
             text-transform: capitalize;
         }
-        .status.diterima { background-color: #c77800; }
-        .status.ditangani { background-color: #ffa726; }
-        .status.selesai { background-color: #43a047; }
-        .status.ditolak { background-color: #e53935; }
+
+        .status.diterima {
+            background-color: #c77800;
+        }
+
+        .status.ditangani {
+            background-color: #ffa726;
+        }
+
+        .status.selesai {
+            background-color: #43a047;
+        }
+
+        .status.ditolak {
+            background-color: #e53935;
+        }
 
         footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.05);
             color: var(--color-secondary);
             font-size: 13.5px;
             padding: 14px 25px;
-            border-top: 1px solid rgba(255,255,255,0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 10px 10px 0 0;
-            box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
         }
 
-        footer .left, footer .right { display: flex; align-items: center; gap: 8px; }
-        footer .material-icons-outlined { font-size: 16px; color: var(--color-accent); }
+        footer .left,
+        footer .right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        footer .material-icons-outlined {
+            font-size: 16px;
+            color: var(--color-accent);
+        }
     </style>
 </head>
 
 <body>
     @include('dashboardRT.layout.header')
- <div class="container">
+    <div class="container">
         <div class="sidebar">
             <div>
                 <div class="menu">
@@ -256,20 +316,30 @@
                 </div>
 
                 <!-- CARD DINAMIS -->
+                @php
+                    $allStatuses = ['Menunggu Verifikasi', 'Sedang Ditangani', 'Selesai', 'Ditolak'];
+                @endphp
+
                 @forelse($laporans as $laporan)
                     @php
                         $icon = 'report';
                         $color = '#c62828';
 
                         if (str_contains(strtolower($laporan->jenis_laporan), 'medis')) {
-                            $icon = 'medical_services'; $color = '#1565c0';
+                            $icon = 'medical_services';
+                            $color = '#1565c0';
                         } elseif (str_contains(strtolower($laporan->jenis_laporan), 'kebakaran')) {
-                            $icon = 'fire_extinguisher'; $color = '#d32f2f';
-                        } elseif (str_contains(strtolower($laporan->jenis_laporan), 'polisi') || str_contains(strtolower($laporan->jenis_laporan), 'maling')) {
-                            $icon = 'local_police'; $color = '#2e7d32';
+                            $icon = 'fire_extinguisher';
+                            $color = '#d32f2f';
+                        } elseif (
+                            str_contains(strtolower($laporan->jenis_laporan), 'polisi') ||
+                            str_contains(strtolower($laporan->jenis_laporan), 'maling')
+                        ) {
+                            $icon = 'local_police';
+                            $color = '#2e7d32';
                         }
 
-                        $statusClass = match(strtolower($laporan->status)) {
+                        $statusClass = match (strtolower($laporan->status)) {
                             'menunggu verifikasi' => 'diterima',
                             'sedang ditangani' => 'ditangani',
                             'selesai' => 'selesai',
@@ -281,15 +351,35 @@
                     <div class="laporan-card">
                         <div class="laporan-info">
                             <div class="icon-bg">
-                                <span class="material-icons-round" style="color:{{ $color }}">{{ $icon }}</span>
+                                <span class="material-icons-round"
+                                    style="color:{{ $color }}">{{ $icon }}</span>
                             </div>
+
+                            <div class="foto-laporan" style="margin-right:18px;">
+                                <img src="{{ $laporan->foto_kejadian ? asset('storage/' . $laporan->foto_kejadian) : asset('images/placeholder.png') }}"
+                                    alt="Foto Kejadian"
+                                    style="width:70px; height:70px; object-fit:cover; border-radius:10px; border:2px solid var(--color-primary);">
+                            </div>
+
                             <div class="laporan-text">
                                 <h3>{{ ucfirst($laporan->jenis_laporan) }}</h3>
                                 <p>{{ $laporan->nama_pelapor }}</p>
                                 <p>{{ $laporan->lokasi }}</p>
                             </div>
                         </div>
-                        <div class="status {{ $statusClass }}">{{ ucfirst($laporan->status) }}</div>
+                        <form action="{{ route('laporan.updateStatus', $laporan->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <select name="status" class="status {{ $statusClass }}" onchange="this.form.submit()">
+                                @foreach ($allStatuses as $status)
+                                    <option value="{{ $status }}"
+                                        {{ $laporan->status === $status ? 'selected' : '' }}>
+                                        {{ $status }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
+
                     </div>
                 @empty
                     <p>Tidak ada laporan yang ditemukan.</p>
@@ -300,4 +390,5 @@
         </div>
     </div>
 </body>
+
 </html>
