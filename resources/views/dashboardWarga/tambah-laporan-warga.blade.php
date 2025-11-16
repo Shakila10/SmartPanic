@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,17 +41,40 @@
             z-index: 100;
         }
 
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .header-left img { height: 38px; width: auto; }
-        .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
-        .header-center { font-size: 18px; font-weight: 600; margin: 0; }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-left img {
+            height: 38px;
+            width: auto;
+        }
+
+        .header-left h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header-center {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
         .profile {
             background-color: var(--color-primary);
-            width: 45px; height: 45px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
         }
+
         .profile .material-icons-outlined {
             color: var(--color-secondary);
             font-size: 26px;
@@ -76,10 +100,16 @@
             box-sizing: border-box;
         }
 
-        .menu { display: flex; flex-direction: column; gap: 18px; }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
 
         .menu-item {
-            display: flex; align-items: center; gap: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             padding: 10px;
             text-decoration: none;
             color: var(--color-primary);
@@ -89,13 +119,16 @@
             transition: all 0.2s ease;
         }
 
-        .menu-item:hover, .menu-item.active {
+        .menu-item:hover,
+        .menu-item.active {
             background-color: var(--color-primary);
             color: var(--color-secondary);
             transform: translateX(5px);
         }
 
-        .menu-item .material-icons-outlined { font-size: 26px; }
+        .menu-item .material-icons-outlined {
+            font-size: 26px;
+        }
 
         /* === MAIN === */
         .main {
@@ -119,11 +152,12 @@
             padding: 30px 0 60px;
         }
 
-        .form-section, .report-section {
+        .form-section,
+        .report-section {
             background: var(--color-secondary);
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
         }
 
         .form-section {
@@ -136,7 +170,8 @@
             max-width: 320px;
         }
 
-        .form-section h3, .report-section h2 {
+        .form-section h3,
+        .report-section h2 {
             text-align: center;
             margin-bottom: 20px;
             color: var(--color-primary);
@@ -148,7 +183,9 @@
             gap: 14px;
         }
 
-        input, textarea, select {
+        input,
+        textarea,
+        select {
             width: 100%;
             padding: 10px 12px;
             border: 1.5px solid var(--color-primary);
@@ -159,7 +196,10 @@
             box-sizing: border-box;
         }
 
-        textarea { resize: vertical; min-height: 80px; }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
 
         button {
             background-color: var(--color-primary);
@@ -173,7 +213,10 @@
             transition: 0.3s;
         }
 
-        button:hover { background-color: var(--color-hover); transform: scale(1.02); }
+        button:hover {
+            background-color: var(--color-hover);
+            transform: scale(1.02);
+        }
 
         /* === KONTAK DARURAT === */
         .emergency-numbers {
@@ -199,7 +242,9 @@
             margin: 0 auto 8px auto;
         }
 
-        .icon-bg .material-icons-round { font-size: 32px; }
+        .icon-bg .material-icons-round {
+            font-size: 32px;
+        }
 
         /* === INPUT FILE === */
         input[type="file"] {
@@ -216,17 +261,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.05);
             color: var(--color-secondary);
             font-size: 13.5px;
             padding: 14px 25px;
-            border-top: 1px solid rgba(255,255,255,0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 10px 10px 0 0;
-            box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
         }
 
-        footer .left, footer .right { display: flex; align-items: center; gap: 8px; }
-        footer .material-icons-outlined { font-size: 16px; color: var(--color-accent); }
+        footer .left,
+        footer .right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        footer .material-icons-outlined {
+            font-size: 16px;
+            color: var(--color-accent);
+        }
     </style>
 </head>
 
@@ -258,15 +312,18 @@
                     <h2>Kontak Darurat</h2>
                     <div class="emergency-numbers">
                         <div class="emergency-item">
-                            <div class="icon-bg"><span class="material-icons-round" style="color:#003f8a;">local_police</span></div>
+                            <div class="icon-bg"><span class="material-icons-round"
+                                    style="color:#003f8a;">local_police</span></div>
                             <span>110 Polisi</span>
                         </div>
                         <div class="emergency-item">
-                            <div class="icon-bg"><span class="material-icons-round" style="color:#c62828;">local_hospital</span></div>
+                            <div class="icon-bg"><span class="material-icons-round"
+                                    style="color:#c62828;">local_hospital</span></div>
                             <span>113 Ambulans</span>
                         </div>
                         <div class="emergency-item">
-                            <div class="icon-bg"><span class="material-icons-round" style="color:#ff6f00;">fire_extinguisher</span></div>
+                            <div class="icon-bg"><span class="material-icons-round"
+                                    style="color:#ff6f00;">fire_extinguisher</span></div>
                             <span>118 Pemadam</span>
                         </div>
                     </div>
@@ -275,11 +332,12 @@
                 <!-- === FORM LAPORAN DARURAT === -->
                 <section class="form-section">
                     <h3>Formulir Laporan Darurat</h3>
-                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm" enctype="multipart/form-data">
+                    <form action="{{ route('laporan.store') }}" method="POST" id="laporanForm"
+                        enctype="multipart/form-data">
                         @csrf
-                        <input type="text" name="nama" placeholder="Nama Pelapor" required>
+                        <input type="text" name="nama_pelapor" placeholder="Nama Pelapor" required>
 
-                        <select name="jenis_insiden" id="jenisInsiden" required>
+                        <select name="jenis_laporan" id="jenisInsiden" required>
                             <option value="" disabled selected>Pilih Jenis Insiden</option>
                             <option value="Kebakaran">Kebakaran</option>
                             <option value="Kesehatan">Kesehatan / Medis</option>
@@ -288,19 +346,24 @@
                             <option value="Lainnya">Lainnya</option>
                         </select>
 
-                        <input type="text" id="lainnyaInput" name="jenis_lainnya" placeholder="Tulis Jenis Kejadian" style="display:none;">
+                        <input type="text" id="lainnyaInput" name="jenis_lainnya" placeholder="Tulis Jenis Kejadian"
+                            style="display:none;">
 
                         <input type="text" name="lokasi" placeholder="Lokasi Kejadian" required>
                         <textarea name="deskripsi" placeholder="Deskripsi Singkat Kejadian" required></textarea>
 
-                        <label for="foto">Foto Kejadian (opsional):</label>
-                        <input type="file" name="foto" id="foto" accept="image/*">
+                        <!-- === UPLOAD FOTO KEJADIAN === -->
+                        <label style="font-weight:600; font-size:14px;">Foto Kejadian:</label>
+                        <input type="file" name="foto_kejadian" id="fotoKejadian" accept="image/*" required>
 
                         <div id="previewContainer" style="display:none; text-align:center;">
                             <p style="font-size:14px; color:var(--color-primary); font-weight:500;">Preview Foto:</p>
-                            <img id="previewImage" src="#" alt="Preview Foto" style="max-width:100%; max-height:200px; border-radius:8px; border:1.5px solid var(--color-primary); object-fit:cover; margin-bottom:10px;">
+                            <img id="previewImage" src="#" alt="Preview Foto"
+                                style="max-width:100%; max-height:200px; border-radius:8px; border:1.5px solid var(--color-primary); object-fit:cover; margin-bottom:10px;">
                             <br>
-                            <button type="button" id="hapusFotoBtn" style="background-color:#b3261e; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer;">Hapus Foto</button>
+                            <button type="button" id="hapusFotoBtn"
+                                style="background-color:#b3261e; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:500; cursor:pointer;">Hapus
+                                Foto</button>
                         </div>
 
                         <button type="submit">Kirim Laporan</button>
@@ -326,7 +389,7 @@
                 confirmButtonColor: '#800020',
                 confirmButtonText: 'OK'
             }).then(() => {
-                this.submit(); // lanjutkan kirim form ke server
+                this.submit();
             });
         });
     </script>
@@ -374,4 +437,5 @@
         });
     </script>
 </body>
+
 </html>
