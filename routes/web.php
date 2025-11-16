@@ -25,22 +25,24 @@ use App\Http\Controllers\DashboardWargaController;
 // });
 
 // Public / warga
-Route::get('/lapor-baru', [LaporanController::class,'create'])->name('laporan.create');
-Route::post('/lapor-baru', [LaporanController::class,'store'])->name('laporan.store');
-Route::get('/terima-kasih', [LaporanController::class,'thanks'])->name('laporan.thanks');
+Route::get('/lapor-baru', [LaporanController::class, 'create'])->name('laporan.create');
+Route::post('/lapor-baru', [LaporanController::class, 'store'])->name('laporan.store');
+Route::get('/terima-kasih', [LaporanController::class, 'thanks'])->name('laporan.thanks');
 
 // Chart data endpoint (protected so only admin can call — middleware auth)
-Route::get('/chart-data', [DashboardController::class,'chartData'])->middleware('auth')->name('chart.data');
+Route::get('/chart-data', [DashboardRTController::class, 'chartData'])->middleware('auth')->name('chart.data');
 
 // Tips page
-Route::get('/tips', function(){ return view('tips.index'); })->name('tips.index');
+Route::get('/tips', function () {
+    return view('tips.index');
+})->name('tips.index');
 
 // Tips page
-Route::get('/tips', function(){ return view('tips.index'); })->name('tips.index');
-
+Route::get('/tips', function () {
+    return view('tips.index');
+})->name('tips.index');
 
 // require __DIR__.'/auth.php';
-
 
 Route::get('/', function () {
     return view('landing');
@@ -77,6 +79,11 @@ Route::post('/dashboardRT/tambah-laporan', [DashboardRTController::class, 'simpa
 
 // Halaman riwayat laporan RT
 Route::get('/dashboardRT/riwayat-laporan', [LaporanController::class, 'riwayat'])->name('riwayat-laporan');
+
+// Update status laporan dari dashboard RT
+Route::patch('/dashboardRT/riwayat-laporan/{laporan}/status', [LaporanController::class, 'updateStatus'])
+    ->name('laporan.updateStatus');
+
 // Halaman edukasi & tips darurat RT
 Route::get('/dashboardRT/edukasi-tips', function () {
     return view('dashboardRT.edukasi-tips');
@@ -95,26 +102,28 @@ Route::get('/dashboardWarga/edukasi-tips-warga', function () {
 // Halaman tambah laporan
 Route::get('/dashboardWarga/tambah-laporan-warga', [DashboardWargaController::class, 'tambahLaporan'])->name('tambah-laporan-warga');
 
+// Menyimpan Laporan
+Route::post('/dashboardWarga/tambah-laporan-warga', [DashboardWargaController::class, 'simpanLaporan'])->name('laporan-warga.simpan');
 
+// Halaman edit profil: boleh dilihat siapa saja (dummy jika belum login)
+Route::get('/dashboardRT/profile', [ProfileController::class, 'edit'])->name('dashboardRT.profile');
 
-//edit profile rt
-Route::get('/dashboardRT/profile', function () {
-    return view('dashboardRT.profile.profile');
-})->name('dashboardRT.profile');
+// Update & Hapus profil: wajib login
+Route::middleware('auth')->group(function () {
+    Route::put('/dashboardRT/profile', [ProfileController::class, 'update'])->name('dashboardRT.profile.update');
+    Route::delete('/dashboardRT/profile', [ProfileController::class, 'destroy'])->name('dasbhoardRT.profile.destroy');
+});
 
-Route::get('/dashboardRT/profile/edit', function () {
-    return view('dashboardRT.profile.edit-profile');
-})->name('dashboardRT.editProfile');
+// Halaman edit profil: boleh dilihat siapa saja (dummy jika belum login)
+Route::get('/dashboardWarga/profile', [ProfileController::class, 'edit'])->name('dashboardWarga.profile');
 
+// Update & Hapus profil: wajib login
+Route::middleware('auth')->group(function () {
+    Route::put('/dashboardWarga/profile', [ProfileController::class, 'update'])->name('dashboardWarga.profile.update');
+    Route::delete('/dashboardWarga/profile', [ProfileController::class, 'destroy'])->name('dashboardWarga.profile.destroy');
+});
 
-
-
-
-Route::get('/dashboardWarga/profile', function () {
-    return view('dashboardWarga.profile.profile');
-})->name('dashboardWarga.profile');
-
-// Route untuk halaman profil di Dashboard RT
+// Route untuk halaman profil di Dashboard Warga
 Route::get('/dashboardWarga/edit-profile-warga', function () {
     return view('dashboardWarga.profile.edit-profile-warga');
 })->name('dashboardWarga.edit-profile');
@@ -126,4 +135,3 @@ Route::get('/dashboardRT/edit-profile', function () {
 
 //api notifikasi
 Route::post('/laporan/store', [LaporanController::class, 'store'])->name('laporan.store');
-
