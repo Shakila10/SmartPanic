@@ -8,61 +8,88 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     /**
-     * Menampilkan halaman profil pengguna.
-     * Bisa diakses tanpa login (akan tampil data dummy).
+     * Menampilkan halaman edit profil berdasarkan role user
      */
-    public function edit(Request $request): View
+    public function edit(Request $request): View|RedirectResponse
     {
-        // Jika belum login, gunakan data dummy biar UI bisa dilihat
-        $user = $request->user() ?? (object)[
-            'name' => 'Shakila Rama Wulandari',
-            'email' => 'shakila@example.com',
-        ];
+        $user = $request->user();
 
-        return view('profile.edit', compact('user'));
+        // Jika belum login, redirect ke login
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Harap login terlebih dahulu');
+        }
+
+        // Tentukan view berdasarkan role
+        if ($user->role->name === 'RT') {
+            return view('dashboardRT.profile.edit-profile', compact('user'));
+        }
+
+        return view('dashboardWarga.profile.edit-profile-warga', compact('user'));
     }
 
     /**
-     * Menyimpan perubahan profil pengguna (hanya berfungsi jika login).
+     * Update profil user (untuk RT dan Warga)
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // Cegah error kalau belum login
-        if (!$request->user()) {
-            return Redirect::route('profile.edit')->with('status', 'Harap login untuk memperbarui profil.');
+        $user = $request->user();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Harap login terlebih dahulu');
         }
 
-        $request->user()->fill($request->validated());
+        $data = $request->validated();
 
-        // Reset verifikasi email jika email berubah
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Upload foto baru
+        if ($request->hasFile('photo')) {
+            // Hapus foto lama jika ada
+            if ($user->photo && Storage::disk('public')->exists($user->photo)) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $path = $request->file('photo')->store('profile_photos', 'public');
+            $data['photo'] = $path;
         }
 
-        $request->user()->save();
+        // Update data user
+        $user->fill($data);
 
-        return Redirect::route('profile.edit')->with('status', 'Profil berhasil diperbarui.');
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        // Redirect berdasarkan role
+        $route = $user->role->name === 'RT' ? 'dashboardRT.profile' : 'dashboardWarga.profile';
+
+        return Redirect::route($route)->with('status', 'Profil berhasil diperbarui.');
     }
 
     /**
-     * Menghapus akun pengguna.
+     * Hapus akun user
      */
     public function destroy(Request $request): RedirectResponse
     {
-        // Cegah error kalau belum login
-        if (!$request->user()) {
-            return Redirect::route('profile.edit')->with('status', 'Harap login untuk menghapus akun.');
+        $user = $request->user();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Harap login terlebih dahulu');
         }
 
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        // Hapus foto profil jika ada
+        if ($user->photo && Storage::disk('public')->exists($user->photo)) {
+            Storage::disk('public')->delete($user->photo);
+        }
 
         Auth::logout();
         $user->delete();
@@ -70,6 +97,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('/')->with('status', 'Akun berhasil dihapus.');
     }
 }

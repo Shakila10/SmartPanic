@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,15 +43,31 @@
             z-index: 100;
         }
 
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        .header-left img { height: 38px; width: auto; }
-        .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-left img {
+            height: 38px;
+            width: auto;
+        }
+
+        .header-left h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
         .profile {
             background-color: var(--color-primary);
-            width: 45px; height: 45px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
         }
 
@@ -77,9 +94,16 @@
             box-sizing: border-box;
         }
 
-        .menu { display: flex; flex-direction: column; gap: 18px; }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
         .menu-item {
-            display: flex; align-items: center; gap: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             padding: 10px;
             text-decoration: none;
             color: var(--color-primary);
@@ -89,14 +113,17 @@
             transition: all 0.2s ease;
         }
 
-        .menu-item:hover, .menu-item.active {
+        .menu-item:hover,
+        .menu-item.active {
             background-color: var(--color-primary);
             color: var(--color-secondary);
             transform: translateX(5px);
         }
 
         .logout {
-            display: flex; align-items: center; gap: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-top: 30px;
             text-decoration: none;
             color: var(--color-primary);
@@ -104,7 +131,9 @@
             transition: 0.2s;
         }
 
-        .logout:hover { color: var(--color-hover); }
+        .logout:hover {
+            color: var(--color-hover);
+        }
 
         .main {
             flex: 1;
@@ -121,7 +150,7 @@
             background-color: var(--color-secondary);
             padding: 40px 50px;
             border-radius: 12px;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+            box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
             width: 480px;
             text-align: center;
             color: var(--color-primary);
@@ -131,16 +160,31 @@
         .profile-icon {
             background-color: var(--color-primary);
             color: var(--color-secondary);
-            width: 90px; height: 90px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 50px;
             margin: 0 auto 25px;
         }
 
-        .profile-info { text-align: left; margin-top: 15px; }
-        .profile-info p { font-size: 15px; margin: 10px 0; display: flex; justify-content: space-between; }
-        .profile-info span { font-weight: 600; }
+        .profile-info {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .profile-info p {
+            font-size: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-info span {
+            font-weight: 600;
+        }
 
         .edit-btn {
             background-color: var(--color-primary);
@@ -157,19 +201,21 @@
             gap: 8px;
         }
 
-        .edit-btn:hover { background-color: var(--color-hover); }
+        .edit-btn:hover {
+            background-color: var(--color-hover);
+        }
 
         footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.05);
             color: var(--color-secondary);
             font-size: 13.5px;
             padding: 14px 25px;
-            border-top: 1px solid rgba(255,255,255,0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 10px 10px 0 0;
-            box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
             width: 95%;
             margin-top: 60px;
         }
@@ -180,30 +226,40 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
 <body>
-    @include('dashboardRT.layout.header')
+    @include('dashboardWarga.layout.header')
 
     <div class="container">
         <!-- SIDEBAR -->
         <div class="sidebar">
             <div>
                 <div class="menu">
-                    <a href="{{ route('dashboardRT') }}" class="menu-item"><span class="material-icons-outlined">home</span> Beranda</a>
-                    <a href="{{ route('tambah-laporan') }}" class="menu-item"><span class="material-icons-outlined">post_add</span> Tambah Laporan</a>
-                    <a href="{{ route('riwayat-laporan') }}" class="menu-item"><span class="material-icons-outlined">history</span> Riwayat Laporan</a>
-                    <a href="{{ route('edukasi-tips') }}" class="menu-item"><span class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat</a>
+                    <a href="{{ route('dashboardWarga') }}" class="menu-item"><span
+                            class="material-icons-outlined">home</span> Beranda</a>
+                    <a href="{{ route('tambah-laporan') }}" class="menu-item"><span
+                            class="material-icons-outlined">post_add</span> Tambah Laporan</a>
+                    <a href="{{ route('riwayat-laporan') }}" class="menu-item"><span
+                            class="material-icons-outlined">history</span> Riwayat Laporan</a>
+                    <a href="{{ route('edukasi-tips') }}" class="menu-item"><span
+                            class="material-icons-outlined">lightbulb</span> Edukasi & Tips Darurat</a>
                 </div>
             </div>
 
-            <a href="{{ route('logout') }}" 
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                class="logout">
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout">
                 <span class="material-icons-outlined">logout</span> Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
@@ -221,19 +277,21 @@
                     <p><strong>Alamat</strong> <span>Lorong Kuningan, Jl. Lingkar Barat II</span></p>
                 </div>
 
-                <button class="edit-btn" onclick="window.location.href='{{ route('dashboardRT.editProfile') }}'">
+                <button class="edit-btn">
+                    {{-- <button class="edit-btn" onclick="window.location.href='{{ route('dashboardWarga.editProfile') }}'"> --}}
                     <span class="material-icons-outlined">edit</span> Edit Profil
                 </button>
             </div>
 
-            @include('dashboardRT.layout.footer')
+            @include('dashboardWarga.layout.footer')
         </div>
     </div>
 
     <script>
         document.querySelector('.profile').addEventListener('click', () => {
-            window.location.href = "{{ route('dashboardRT.profile') }}";
+            window.location.href = "{{ route('dashboardWarga.profile') }}";
         });
     </script>
 </body>
+
 </html>
