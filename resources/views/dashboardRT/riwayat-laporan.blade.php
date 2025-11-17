@@ -234,7 +234,7 @@
         }
 
         .status.diterima {
-            background-color: #c77800;
+            background-color: #800020;
         }
 
         .status.ditangani {

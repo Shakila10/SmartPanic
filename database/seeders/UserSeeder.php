@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role_id' => 1,
             'alamat' => 'Lorong Kuningan, Jl. Lingkar Barat II',
-            'no_hp' => '08123456789',
+            'no_hp' => '08987654321',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

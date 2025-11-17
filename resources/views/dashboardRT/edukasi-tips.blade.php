@@ -55,7 +55,6 @@
             font-size: 26px;
         }
 
-        /* === LAYOUT === */
         .container {
             display: flex;
             height: calc(100vh - 70px);
@@ -63,7 +62,7 @@
             overflow: hidden;
         }
 
-        /* === SIDEBAR === */
+        /* SIDEBAR */
         .sidebar {
             width: 280px;
             background-color: var(--color-secondary);

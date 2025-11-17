@@ -209,7 +209,7 @@
         }
 
         .profile-form input {
-            width: 100%;
+            width: 94%;
             padding: 10px 12px;
             border: 1.5px solid var(--color-primary);
             border-radius: 8px;
@@ -231,11 +231,15 @@
             color: var(--color-secondary);
             border: none;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: .3s;
             text-align: center;
+        }
+
+        .btn.save {
+            font-size: 17px;
         }
 
         .btn:hover {
@@ -243,11 +247,13 @@
         }
 
         .btn.cancel {
-            background: #aaa;
+            background-color: #aaa;
+            text-decoration: none;
+            text-align: center;
         }
 
         .btn.cancel:hover {
-            background: #888;
+            background-color: #c6c3c3ff;
         }
 
         footer {

@@ -224,7 +224,7 @@
         <a href="#fitur">Fitur</a>
         <a href="#about">About Us</a>
         <a href="#contact-section">Contact</a>
-        <a href="#" class="profile"> <i class="fa-solid fa-user"></i> Profil </a>
+        <a href="login" class="profile"> <i class="fa-solid fa-user"></i> Profil </a>
     </nav>
 </header>
 

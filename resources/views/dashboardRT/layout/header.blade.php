@@ -6,9 +6,12 @@
    <div class="header-center"><h3>Dashboard RT</h3></div>
     <div class="header-right">
         <div class="profile">
-            <span class="material-icons-outlined">person</span>
-        </div>
-    </div>
+    @if(Auth::user()->photo)
+        <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Profile" class="profile-img">
+    @else
+        <span class="material-icons-outlined">person</span>
+    @endif
+</div>
 </header>
 
 <script>
@@ -16,4 +19,12 @@
         window.location.href = "{{ route('dashboardRT.profile') }}";
     });
 </script>
+<style>
+    .profile img.profile-img {
+    width: 40px;   
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;  
+    }
+</style>
 

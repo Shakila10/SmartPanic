@@ -214,20 +214,29 @@
             margin-bottom: 6px;
         }
 
+        
+
         .profile-form input {
-            width: 100%;
+            width: 94%;
             padding: 8px 10px;
             border: 1.5px solid var(--color-primary);
             border-radius: 8px;
             font-family: inherit;
             background-color: #fff;
             color: var(--color-primary);
+            
         }
+        
 
         .buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 25px;
+            
+            
+        }
+        .btn.save {
+            font-size: 17px;
         }
 
         .btn {
@@ -236,11 +245,13 @@
             color: var(--color-secondary);
             border: none;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
             margin: 0 5px;
+            padding: 12px 0;
+
         }
 
         .btn:hover {
@@ -249,11 +260,14 @@
 
         .btn.cancel {
             background-color: #aaa;
+            text-decoration: none;
+            text-align: center;
         }
 
         .btn.cancel:hover {
-            background-color: #888;
+            background-color: #c6c3c3ff;
         }
+
 
         footer {
             display: flex;
