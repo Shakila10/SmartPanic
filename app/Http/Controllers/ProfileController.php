@@ -25,7 +25,7 @@ class ProfileController extends Controller
         }
 
         // Tentukan view berdasarkan role
-        if ($user->role->name === 'RT') {
+        if ($user->role->name === 'rt') {
             return view('dashboardRT.profile.edit-profile', compact('user'));
         }
 
@@ -66,7 +66,7 @@ class ProfileController extends Controller
         $user->save();
 
         // Redirect berdasarkan role
-        $route = $user->role->name === 'RT' ? 'dashboardRT.profile' : 'dashboardWarga.profile';
+        $route = $user->role->name === 'rt' ? 'dashboardRT.profile' : 'dashboardWarga.profile';
 
         return Redirect::route($route)->with('status', 'Profil berhasil diperbarui.');
     }
